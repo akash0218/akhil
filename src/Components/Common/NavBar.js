@@ -23,6 +23,8 @@ const NavBar = () => {
     const location = useLocation()
     const ref = useRef(null);
 
+    console.log(NavbarLinks)
+
     // API CALL
     const [subLinks, setSubLinks] = useState([]);
 

@@ -56,7 +56,7 @@ const RenderSteps = () => {
         ))}
           </div>
 
-          <div className='relative mb-16 flex w-full select-none items-center ml-[130px] gap-x-[45px]'>
+          <div className='relative mb-16 flex w-full select-none items-center ml-[200px] gap-x-[125px]'>
             {
               steps.map((item) => (
                 <div className={`text-sm ${step >= item.id ? "text-richblack-5" : "text-richblack-500"} flex min-w-[200px] flex-col`}>

@@ -44,7 +44,7 @@ const Course_Card = ({course, Height}) => {
                             </span>
                         </div>
                         <p className="text-xl text-richblack-5">
-                            Rs. {course?.price}
+                            $ {course?.price}
                         </p>
                     </div>
                 </div>

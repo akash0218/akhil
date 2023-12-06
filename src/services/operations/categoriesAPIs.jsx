@@ -73,7 +73,6 @@ export const createCategoryRequest = async (name, description, token, firstName,
 }
 
 export async function getCategoryApprovalRequests(token){
-    console.log("akash")
     const toastId = toast.loading("Loading..!!");
     let result = []
 

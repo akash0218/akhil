@@ -26,7 +26,6 @@ const PublishCourse = () => {
     const {token} = useSelector((state) => state.auth)
     const navigate = useNavigate();
 
-    console.log(course);
 
     useEffect(() => {
       if(course?.status === COURSE_STATUS.PUBLISHED){
@@ -80,7 +79,7 @@ const PublishCourse = () => {
                 className="border-gray-300 h-4 w-4 rounded bg-richblack-500 text-richblack-400 focus:ring-2 focus:ring-richblack-5"
               />
               <span className="ml-2 text-richblack-400">
-                Make this course as public
+                Make this item as public
               </span>
             </label>
           </div>

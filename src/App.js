@@ -24,6 +24,12 @@ import AddCourse from "./Components/core/Dashboard/AddItem/AddCourse";
 import MyCourses from "./Components/core/Dashboard/MyCourses";
 import EditCourse from "./Components/core/Dashboard/EditCourse/EditCourse";
 import Catalog from "./Pages/Catalog";
+import CourseDetails from "./Pages/CourseDetails";
+import Cart from "./Components/core/Dashboard/Cart/Cart";
+import EnrolledCourses from "./Components/core/Dashboard/EnrolledCourses";
+import Instructor from "./Components/core/Dashboard/InstructorDashBoard/Instructor";
+import Aboutus from "./Pages/Aboutus";
+import Home from "./Pages/Home";
 
 function App() {
 
@@ -34,6 +40,7 @@ function App() {
       <NavBar/>
 
       <Routes>
+        <Route path="/" element={<Home/>}/>
         <Route path="/login/admin" element={<Admin/>}/>
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<SignUp/>} />
@@ -42,7 +49,8 @@ function App() {
         <Route path="/reset-password/:id" element={<UpdatePassword/>} />
         <Route path="/contact" element={<ContactUs/>}/>
         <Route path="/catalog/:catalogName" element={<Catalog/>}/>
-
+        <Route path="/courses/:courseId" element={<CourseDetails/>}/>
+        <Route path="/about" element={<Aboutus/>} />
         <Route
             element={
               <PrivateRoute>
@@ -59,6 +67,9 @@ function App() {
                   path="dashboard/edit-course/:courseId"
                   element={<EditCourse />}
             />
+            <Route path="dashboard/buyings" element={<EnrolledCourses />}/>
+            <Route path="/dashboard/cart" element={<Cart />} />
+            <Route path="/dashboard/instructor" element={<Instructor/>}/>
             {
               user?.accountType === ACCOUNT_TYPE.ADMIN && (
               <>

@@ -8,6 +8,7 @@ const {createCourse, showAllCourses, getCourseDetails, editCourse, getInstuctorC
 
 // importing middlewares
 const {auth, isBuyer, isSeller, isAdmin} = require("../middlewares/Auth");
+const {createRating, getAverageRating, getAllRatingOfCourse, getAllRatings} = require("../controllers/RatingAndReview");
 
 
 /// category ///
@@ -30,6 +31,14 @@ router.post("/getCourseDetails", getCourseDetails);
 router.delete("/deleteCourse", auth, deleteCourse);
 router.get("/getAllCategories", showAllCategories);
 router.post("/getcategoryPageDetails", categoryPageDetails);
+
+router.post("/courseBought", auth, courseBought)
+router.post("/createRating", auth, createRating);
+router.get("/getAverageRating", getAverageRating);
+// getAllRatingOfCourse
+router.get("/getAllRatingOfCourse", getAllRatingOfCourse);
+// fetchAllRatings
+router.get("/getAllRatings", getAllRatings);
                 
 
 module.exports = router;

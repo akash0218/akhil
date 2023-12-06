@@ -8,8 +8,6 @@ import {
 
 const RatingStars = ({Review_Count, Star_Size}) => {
 
-    console.log(Review_Count)
-
     const [starCount, setStarCount] = useState({
         full: 0,
         half: 0,

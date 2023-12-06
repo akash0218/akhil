@@ -16,7 +16,7 @@ export async function getProfileEnrolledCourses(token){
         if (!response.data.success) {
             throw new Error(response.data.message)
         }
-        console.log(response.data.data, "response")
+        console.log(response, "response")
         result = response.data.data
     }
     catch(error){

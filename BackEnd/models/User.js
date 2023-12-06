@@ -42,10 +42,10 @@ const userSchema = new mongoose.Schema({
       required: true,
       ref: "Profile",
     },
-    Inventory: [
+    inventory: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Inventory",
+            ref: "Course",
         }
     ],
 

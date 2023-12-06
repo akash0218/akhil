@@ -74,8 +74,9 @@ exports.contactUsEmail = (
     
     <body>
         <div class="container">
-            <a href="https://studynotionprod.vercel.app/"><img class="logo"
-                    src="https://i.ibb.co/7Xyj3PC/logo.png" alt="StudyNotion Logo"></a>
+            <a href="https://ibb.co/5Fx3d7C"> 
+				<img src="https://i.ibb.co/hf1Nkqr/54ab2eed-a35f-459d-a0d9-92e196c9b891.jpg" alt="54ab2eed-a35f-459d-a0d9-92e196c9b891" border="0">
+			</a>
             <div class="message">Contact Form Confirmation</div>
             <div class="body">
                 <p>Dear ${firstName} ${lastName},</p>
@@ -89,7 +90,7 @@ exports.contactUsEmail = (
                 <p>We appreciate your interest and will get back to you shortly. </p>
             </div>
             <div class="support">If you have any further questions or need immediate assistance, please feel free to reach
-                out to us at <a href="mailto:info@studynotion.com">info@studynotion.com</a>. We are here to help!</div>
+                out to us at <a href="mailto:info@clarkton.com">info@clarkton.com</a>. We are here to help!</div>
         </div>
     </body>
     

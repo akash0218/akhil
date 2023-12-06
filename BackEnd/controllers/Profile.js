@@ -5,6 +5,7 @@ const InstructorApprovals = require("../models/InstructorApprovals");
 const mailSender = require("../config/mailSender.jsx");
 const { instructorApproval } = require("../mailTemplates/instructorApproval");
 const { instructorDecline } = require("../mailTemplates/instructorDecline");
+const Course = require("../models/Course");
 
 // update Profile, since we are creating null values at the time of Sign up the user
 exports.updateProfile = async (req, res) => {
@@ -115,53 +116,21 @@ exports.getUserDetails = async (req, res) => {
 
 //get Enrolled Courses
 exports.getEnrolledCourses = async (req, res) => {
+    console.log("akash in enrolled courses");
     try{
         const userID = req.user.id;
         let userDetails = await User.findOne({
             _id: userID,
           })
             .populate({
-              path: "courses",
-              populate: {
-                path: "courseContent",
-                populate: {
-                  path: "SubSection",
-                },
-              },
+              path: "inventory",
+              populate: "ratingsAndReviews"
             })
             .exec()
-        
-        for (var i = 0; i < userDetails.courses.length; i++) {
-            let totalDurationInSeconds = 0
-            var SubsectionLength = 0
-            for (var j = 0; j < userDetails.courses[i].courseContent.length; j++) {
-                for (var k=0; k < userDetails.courses[i].courseContent[j].SubSection.length; k++){
-                    let temp = userDetails.courses[i].courseContent[j].SubSection[k].duration;
-                    totalDurationInSeconds += Number(temp)
-                }
-                userDetails.courses[i].totalDuration = convertSecondsToDuration(totalDurationInSeconds)
-                SubsectionLength += userDetails.courses[i].courseContent[j].SubSection.length
-                }
-                let courseProgressCount = await CourseProgress.findOne({
-                    courseId: userDetails.courses[i]._id,
-                    userId: userID,
-                })
-                courseProgressCount = courseProgressCount ? courseProgressCount?.completedVideos.length : 0;
-                if (SubsectionLength === 0) {
-                    userDetails.courses[i].progressPercentage = 100
-                } else {
-                // To make it up to 2 decimal point
-                const multiplier = Math.pow(10, 2)
-                userDetails.courses[i].progressPercentage =
-                    Math.round(
-                    (courseProgressCount / SubsectionLength) * 100 * multiplier
-                    ) / multiplier
-                }
-            }
             
         return res.status(200).json({
             success: true,
-            data: userDetails.courses
+            data: userDetails.inventory
         })
         
     }

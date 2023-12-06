@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { HiOutlineCurrencyRupee } from "react-icons/hi"
+import { PiCurrencyDollarBold } from "react-icons/pi";
 import { createCourse, getAllCategories, editCourseDetails, getCourseDetails } from '../../../../../services/operations/courseAPIs'
 import { useEffect } from 'react'
 import ChipInput from './ChipInput'
@@ -202,7 +202,7 @@ const CourseInformationForm = () => {
               })}
               className='rounded-lg bg-richblack-700 p-3 text-[16px] leading-[24px] text-richblack-5 shadow-[0_1px_0_0] shadow-white/50 placeholder:text-richblack-400 focus:outline-none w-full !pl-12'
             />
-            <HiOutlineCurrencyRupee className="absolute left-3 top-1/2 inline-block -translate-y-1/2 text-2xl text-richblack-400" />
+            <PiCurrencyDollarBold className="absolute left-3 top-1/2 -translate-y-1/2 text-2xl text-richblack-200" />
           </div>
           {
             errors.coursePrice && (

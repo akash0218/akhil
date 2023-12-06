@@ -78,8 +78,10 @@ exports.categoryPageDetails = async (req, res) => {
         console.log(categoryId);
         const selectedCategory = await Category.findById({_id: categoryId}).populate({
             path: "course",
+            populate:{
+                path: "ratingsAndReviews"
+            }
         });
-        console.log(selectedCategory, "AKASH");
         // validation
         if(!selectedCategory){
             return res.status(404).json({
@@ -88,8 +90,12 @@ exports.categoryPageDetails = async (req, res) => {
             })
         }
         // get courses for different categories
+        // get courses for different categories
         const differentCategories = await Category.find({_id: {$ne: categoryId}}).populate({
             path: "course",
+            populate:{
+                path:"ratingsAndReviews"
+            }
         }).populate({
             path: "course",
             populate:{
@@ -97,7 +103,7 @@ exports.categoryPageDetails = async (req, res) => {
             }
         }).exec();
         // get top 10 selling courses
-        const topSellingCourses = await Course.find({courseBought: {$ne: 0}}).populate("instructor").sort({"courseBought": -1}).limit(10);
+        const topSellingCourses = await Course.find({courseBought: {$ne: 0}}).populate("instructor").populate("ratingsAndReviews").sort({"courseBought": -1}).limit(10);
         // return all courses
         res.status(200).json({
             success: true,

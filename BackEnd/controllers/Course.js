@@ -208,10 +208,11 @@ exports.getCourseDetails = async (req, res) => {
     try{
         // get courseID
         const {courseId} = req.body;
+        console.log(courseId, "Akash");
         // get course from DB
         // populating the details
-        const courseDetails = await Course.findById({_id: courseId}).populate("category").populate("ratingsAndReviews").exec();
-        console.log(courseDetails)
+        const courseDetails = await Course.findById({_id: courseId}).populate("category").populate("instructor").populate("ratingsAndReviews").exec();
+        console.log(courseDetails, "AKash");
         // validation
         if(!courseDetails){
             return res.status(400).json({
@@ -314,20 +315,6 @@ exports.courseBought = async (req, res) => {
                 {_id: courseId},
                 {
                     courseBought: courseBought+1
-                }
-            )
-
-            const courseProgress = await CourseProgress.create({
-                courseId,
-                userId
-            })
-
-            await User.findByIdAndUpdate(
-                {_id: userId},
-                {
-                    $push: {
-                        courseProgress: courseProgress._id
-                    }
                 }
             )
         }
