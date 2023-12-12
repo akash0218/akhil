@@ -3,7 +3,7 @@ const router = express.Router();
 
 
 // category Controllers
-const {createCategory, showAllCategories, categoryPageDetails, createCategoryRequest, getCategoryRequests, declineCategoryApprovalRequest, approveCategoryApprovalRequest} = require("../controllers/Category")
+const {createCategory, showAllCategories, categoryPageDetails, categoryCourseDetails, createCategoryRequest, getCategoryRequests, courseDetails, declineCategoryApprovalRequest, approveCategoryApprovalRequest} = require("../controllers/Category")
 const {createCourse, showAllCourses, getCourseDetails, editCourse, getInstuctorCourseDetails, deleteCourse, courseBought} = require("../controllers/Course");
 
 // importing middlewares
@@ -29,8 +29,9 @@ router.delete("/deleteCourse", auth, deleteCourse);
 router.put("/editCourse", auth, editCourse)
 router.post("/getCourseDetails", getCourseDetails);
 router.delete("/deleteCourse", auth, deleteCourse);
-router.get("/getAllCategories", showAllCategories);
 router.post("/getcategoryPageDetails", categoryPageDetails);
+router.post("/getcategoryCourseDetails", categoryCourseDetails);
+router.post("/courseDetails", courseDetails);
 
 router.post("/courseBought", auth, courseBought)
 router.post("/createRating", auth, createRating);

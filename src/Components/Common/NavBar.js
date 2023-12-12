@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import logo from "../../assets/logo.png"
 import { ACCOUNT_TYPE } from '../../utils/Constants'
 import { useState } from 'react'
@@ -13,6 +13,7 @@ import { BsChevronDown } from "react-icons/bs"
 import useOnClickOutside from '../../hooks/useOnClickOutside'
 import { useRef } from 'react'
 import { getAllCategories } from '../../services/operations/courseAPIs'
+import toast from 'react-hot-toast'
 
 const NavBar = () => {
     const {token, tab, categories} = useSelector((state) => state.auth);
@@ -22,8 +23,8 @@ const NavBar = () => {
     const dispatch = useDispatch()
     const location = useLocation()
     const ref = useRef(null);
-
-    console.log(NavbarLinks)
+    const [searchText, setSearchText] = useState("");
+    const navigate = useNavigate();
 
     // API CALL
     const [subLinks, setSubLinks] = useState([]);
@@ -60,6 +61,24 @@ const NavBar = () => {
     useOnClickOutside(ref, setOpen)
 
     const [linkHandler, setLinkHandler] = useState(false);
+    const [option, setOption] = useState(null);
+
+    function handleChange(event){
+        setSearchText(event.target.value);
+    }
+    
+    function getOption() {
+        const selectElement = document.querySelector("#options");
+        const temp = document.querySelector("#search");
+        const output = selectElement.value;
+        console.log(output);
+        console.log(searchText);
+        setOption(output);
+        console.log(option);
+        {
+            output == "item" ? navigate(`/searchQuery/item/${searchText}`) : (option != null && searchText != "") ? navigate(`/searchQuery/category/${option}/item/${searchText}`) : toast.error("Please select category / Item and enter valid Item")
+        }
+    }
 
     return (
         <div className='flex h-20 items-center justify-center border-b-[1px] border-b-richblack-700'>
@@ -140,6 +159,29 @@ const NavBar = () => {
                     </ul>
                 </nav>
 
+                {
+                    tab == "Catalog" && 
+                    <div className ="bg-gray-100 flex justify-center items-center">
+                        <div class="py-1 px-1 flex items-center bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500">
+                            <div class="flex bg-gray-100 px-2 gap-x-3 rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                                <input class="bg-gray-100 outline-none text-sm" type="text" id='search' placeholder="Search...." onChange={handleChange} />
+                            </div>
+                            <div className="flex rounded-sm text-[12px] font-semibold cursor-pointer px-3">
+                                <select name="options" id="options">
+                                    <option value="category">Category</option>
+                                    <option value="item">Item</option>
+                                </select>
+                            </div>
+                            <div className="bg-yellow-50 py-1 px-2  text-richblack-500 font-semibold rounded-lg hover:shadow-lg transition duration-3000 cursor-pointer" onClick={getOption}>
+                                <span>Search</span>
+                            </div>
+                        </div>
+                    </div>     
+                }
+
                 {/* login, logout, signup, dashboard */}
                 {
                     location.pathname.split("/").pop() !== ACCOUNT_TYPE.ADMIN.toLowerCase() && location.pathname.split("/").pop() !== "approval" && 
@@ -191,6 +233,8 @@ const NavBar = () => {
                         <ProfileDropDown/>
                     </div>
                 }
+
+
 
             </div>
 

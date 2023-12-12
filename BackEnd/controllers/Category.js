@@ -69,6 +69,55 @@ exports.showAllCategories = async (req, res) => {
 
 }
 
+// getAll Categories 
+exports.categoryCourseDetails = async (req, res) => {
+
+    try{
+        const {itemId} = req.body;
+        console.log(itemId)
+        // show all data
+        const allCategories = await Category.findOne({name: itemId}).populate("course")
+        console.log(allCategories);
+        // respose
+        res.status(200).json({
+            success: true,
+            message: "All Categories fetched successfully",
+            data: allCategories,
+        })
+    }
+    catch(error){
+        return res.status(500).json({
+            success: false,
+            message: error.message,
+        })
+    }
+
+}
+
+exports.courseDetails = async (req, res) => {
+
+    try{
+        const {itemId} = req.body;
+        console.log(itemId, "AKash")
+        // show all data
+        const allCategories = await Course.findOne({name: itemId})
+        console.log(allCategories);
+        // respose
+        res.status(200).json({
+            success: true,
+            message: "All Categories fetched successfully",
+            data: allCategories,
+        })
+    }
+    catch(error){
+        return res.status(500).json({
+            success: false,
+            message: error.message,
+        })
+    }
+
+}
+
 // categoryPageDetails
 exports.categoryPageDetails = async (req, res) => {
     try{

@@ -30,6 +30,7 @@ import EnrolledCourses from "./Components/core/Dashboard/EnrolledCourses";
 import Instructor from "./Components/core/Dashboard/InstructorDashBoard/Instructor";
 import Aboutus from "./Pages/Aboutus";
 import Home from "./Pages/Home";
+import Search from "./Components/Common/Search";
 
 function App() {
 
@@ -67,6 +68,8 @@ function App() {
                   path="dashboard/edit-course/:courseId"
                   element={<EditCourse />}
             />
+            <Route path="/searchQuery/category/:categoryId/item/:itemId" element={<Search/>}/>
+            <Route path="/searchQuery/item/:itemId" element={<Search/>}/>
             <Route path="dashboard/buyings" element={<EnrolledCourses />}/>
             <Route path="/dashboard/cart" element={<Cart />} />
             <Route path="/dashboard/instructor" element={<Instructor/>}/>

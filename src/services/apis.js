@@ -20,6 +20,8 @@ export const contactusEndpoint = {
 export const categories = {
     CATEGORIES_API: BASE_URL + "/course/showAllCategories",
     GET_CATEGORY_PAGE_DETAILS_API: BASE_URL + "/course/getcategoryPageDetails",
+    GET_CATEGORY_COURSE_DETAILS_API: BASE_URL + "/course/getcategoryCourseDetails",
+    GET_COURSE_DETAILS_API: BASE_URL + "/course/courseDetails",
     CREATE_CATEGORY_API: BASE_URL + "/course/createCategory",
     CREATE_CATEGORY_REQUEST_API: BASE_URL + "/course/createCategoryRequest",
     GET_CATEGORY_REQUEST_API: BASE_URL + "/course/getCategoryRequest",

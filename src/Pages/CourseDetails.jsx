@@ -6,10 +6,8 @@ import getAvgRating from '../utils/getAvgRating';
 import RatingStars from '../Components/Common/RatingStars';
 import { BiInfoCircle } from "react-icons/bi"
 import { formatDate } from '../services/formatDate';
-import { HiOutlineGlobeAlt } from "react-icons/hi"
 import CourseDetailsCard from '../Components/core/Course/CourseDetailsCard';
 import Footer from '../Components/Common/Footer';
-import CourseAccordionBar from '../Components/core/Course/CourseAccordionBar';
 import {useSelector } from 'react-redux/es/hooks/useSelector';
 import { useDispatch } from 'react-redux';
 import ConfirmationModal from '../Components/Common/ConfirmationModal';
@@ -33,10 +31,13 @@ const CourseDetails = () => {
     const {token} = useSelector((state) => state.auth)
     const {user} = useSelector((state) => state.profile)
 
+    console.log(courseId, "akash is");
+
     useEffect(() => {
         (async () => {
             setLoading(true)
             const result = await getCourseDetails(courseId);
+            console.log(result);
             setCourseDetails(result);
             setLoading(false)
         })()
